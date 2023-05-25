@@ -53,7 +53,7 @@
 
         table {
             border-collapse: collapse;
-            width: 100%;
+            width: 180%;
             background-color: #fff;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
         }
@@ -85,18 +85,18 @@
         <div class="row justify-content-center">
             <div class="col-12 col-sm-6">
                 <div class="wrapper">
-                    <div class="sector" style="transform: rotate(75deg) skew(60deg);" onclick="one()">1</div>
-                    <div class="sector" style="transform: rotate(105deg) skew(60deg);" onclick="two()">2</div>
-                    <div class="sector" style="transform: rotate(135deg) skew(60deg);" onclick="dot()">Dot Ball</div>
-                    <div class="sector" style="transform: rotate(165deg) skew(60deg);" onclick="four()">4</div>
-                    <div class="sector" style="transform: rotate(195deg) skew(60deg);" onclick="six()">Six!</div>
-                    <div class="sector" style="transform: rotate(225deg) skew(60deg);" onclick="dot()">Dot Ball</div>
-                    <div class="sector" style="transform: rotate(255deg) skew(60deg);" onclick="out()">Out!</div>
-                    <div class="sector" style="transform: rotate(285deg) skew(60deg);" onclick="wide()">Wide</div>
-                    <div class="sector" style="transform: rotate(315deg) skew(60deg);" onclick="dot()">Dot Ball</div>
-                    <div class="sector" style="transform: rotate(345deg) skew(60deg);" onclick="no()">No Ball</div>
-                    <div class="sector" style="transform: rotate(375deg) skew(60deg);" onclick="dot()">Dot Ball</div>
-                    <div class="sector" style="transform: rotate(405deg) skew(60deg);" onclick="runOut()">Run Out</div>
+                    <div class="sector" style="transform: rotate(75deg) skew(60deg);" onclick="one(); one_();">1</div>
+                    <div class="sector" style="transform: rotate(105deg) skew(60deg);" onclick="two(); one_();">2</div>
+                    <div class="sector" style="transform: rotate(135deg) skew(60deg);" onclick="dot(); wide_();">Dot Ball</div>
+                    <div class="sector" style="transform: rotate(165deg) skew(60deg);" onclick="four(); four_()">4</div>
+                    <div class="sector" style="transform: rotate(195deg) skew(60deg);" onclick="six(); six_();">Six!</div>
+                    <div class="sector" style="transform: rotate(225deg) skew(60deg);" onclick="dot(); wide_();">Dot Ball</div>
+                    <div class="sector" style="transform: rotate(255deg) skew(60deg);" onclick="out(); wicket();">Out!</div>
+                    <div class="sector" style="transform: rotate(285deg) skew(60deg);" onclick="wide(); wide_();">Wide</div>
+                    <div class="sector" style="transform: rotate(315deg) skew(60deg);" onclick="dot(); wide_();">Dot Ball</div>
+                    <div class="sector" style="transform: rotate(345deg) skew(60deg);" onclick="no(); wide_();">No Ball</div>
+                    <div class="sector" style="transform: rotate(375deg) skew(60deg);" onclick="dot(); wide_();">Dot Ball</div>
+                    <div class="sector" style="transform: rotate(405deg) skew(60deg);" onclick="runOut(); wicket();">Run Out</div>
                 </div>
             </div>
         </div>
@@ -123,18 +123,26 @@
     </div>
 
     <script>
-        var wrapper = document.querySelector('.wrapper');
-        var isSpinning = false;
 
-        function toggleSpinning() {
-            if (isSpinning) {
-                wrapper.style.animationPlayState = 'paused';
-                isSpinning = false;
-            } else {
-                wrapper.style.animationPlayState = 'running';
-                isSpinning = true;
-            }
+
+var wrapper = document.querySelector('.wrapper');
+    var isSpinning = false;
+    var audio = new Audio('wheel.aac');
+
+
+    function toggleSpinning() {
+        if (isSpinning) {
+            wrapper.style.animationPlayState = 'paused';
+            isSpinning = false;
+            audio.pause();
+        } else {
+            wrapper.style.animationPlayState = 'running';
+            isSpinning = true;
+            audio.volume = 0.2;
+            audio.play();
         }
+    }
+
 
         var numberTable = document.getElementById('numberTable');
 
@@ -185,6 +193,45 @@
 
         function runOut() {
             addToTable('Wicket');
+        }
+
+        function wheel() {
+            // Play sound
+            var audio = new Audio('wheel.aac');
+
+            audio.play();
+        }
+
+        function wicket() {
+            // Play sound
+            var audio = new Audio('wicket.aac');
+            audio.volume = 1;
+            audio.play();
+        }
+
+        function four_() {
+            // Play sound
+            var audio = new Audio('4.aac');
+            audio.volume = 1;
+            audio.play();
+        }
+        function one_() {
+            // Play sound
+            var audio = new Audio('1.aac');
+            audio.volume = 1;
+            audio.play();
+        }
+        function six_() {
+            // Play sound
+            var audio = new Audio('6.aac');
+            audio.volume = 1;
+            audio.play();
+        }
+        function wide_() {
+            // Play sound
+            var audio = new Audio('wide.aac');
+            audio.volume = 1.1;
+            audio.play();
         }
     </script>
 </body>
