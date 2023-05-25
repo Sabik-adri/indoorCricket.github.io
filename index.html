@@ -2,14 +2,9 @@
 <html>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        body {
-            padding-top: 30px;
-            padding-bottom: 30px;
-            display: flex;
-            justify-content: center;
-        }
-
         .wrapper {
             width: 500px;
             height: 500px;
@@ -58,12 +53,13 @@
 
         table {
             border-collapse: collapse;
-            width: 40%;
+            width: 100%;
             background-color: #fff;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
         }
 
-        th, td {
+        th,
+        td {
             padding: 10px;
             text-align: center;
             border-bottom: 1px solid #ddd;
@@ -85,83 +81,46 @@
 </head>
 
 <body>
-    <div class="wrapper">
-        <div class="sector" style="transform: rotate(75deg) skew(60deg);" onclick="one()">1</div>
-        <div class="sector" style="transform: rotate(105deg) skew(60deg);" onclick="two()">2</div>
-        <div class="sector" style="transform: rotate(135deg) skew(60deg);" onclick="dot()">Dot Ball</div>
-        <div class="sector" style="transform: rotate(165deg) skew(60deg);" onclick="four()">4</div>
-        <div class="sector" style="transform: rotate(195deg) skew(60deg);" onclick="six()">Six!</div>
-        <div class="sector" style="transform: rotate(225deg) skew(60deg);" onclick="dot()">Dot Ball</div>
-        <div class="sector" style="transform: rotate(255deg) skew(60deg);" onclick="out()">Out!</div>
-        <div class="sector" style="transform: rotate(285deg) skew(60deg);" onclick="wide()">Wide</div>
-        <div class="sector" style="transform: rotate(315deg) skew(60deg);" onclick="dot()">Dot Ball</div>
-        <div class="sector" style="transform: rotate(345deg) skew(60deg);" onclick="no()">No Ball</div>
-        <div class="sector" style="transform: rotate(375deg) skew(60deg);" onclick="dot()">Dot Ball</div>
-        <div class="sector" style="transform: rotate(405deg) skew(60deg);" onclick="runOut()">run out</div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-6">
+                <div class="wrapper">
+                    <div class="sector" style="transform: rotate(75deg) skew(60deg);" onclick="one()">1</div>
+                    <div class="sector" style="transform: rotate(105deg) skew(60deg);" onclick="two()">2</div>
+                    <div class="sector" style="transform: rotate(135deg) skew(60deg);" onclick="dot()">Dot Ball</div>
+                    <div class="sector" style="transform: rotate(165deg) skew(60deg);" onclick="four()">4</div>
+                    <div class="sector" style="transform: rotate(195deg) skew(60deg);" onclick="six()">Six!</div>
+                    <div class="sector" style="transform: rotate(225deg) skew(60deg);" onclick="dot()">Dot Ball</div>
+                    <div class="sector" style="transform: rotate(255deg) skew(60deg);" onclick="out()">Out!</div>
+                    <div class="sector" style="transform: rotate(285deg) skew(60deg);" onclick="wide()">Wide</div>
+                    <div class="sector" style="transform: rotate(315deg) skew(60deg);" onclick="dot()">Dot Ball</div>
+                    <div class="sector" style="transform: rotate(345deg) skew(60deg);" onclick="no()">No Ball</div>
+                    <div class="sector" style="transform: rotate(375deg) skew(60deg);" onclick="dot()">Dot Ball</div>
+                    <div class="sector" style="transform: rotate(405deg) skew(60deg);" onclick="runOut()">Run Out</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="btn-container">
+            <button id="startBtn" onclick="toggleSpinning()">Start Spinning</button>
+        </div>
+
+        <div class="row justify-content-center mt-4">
+            <div class="col-8 col-sm-6">
+                <table id="numberTable" class="table">
+                    <thead>
+                        <tr>
+                            <th>Player 1</th>
+                            <th>Player 2</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Table rows will be dynamically added here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-
-    <div class="btn-container">
-        <button id="startBtn" onclick="toggleSpinning()">Start Spinning</button>
-    </div><br>
-
-    <table class="tbl">
-        <thead>
-            <tr>
-                <th>Player 1</th>
-                <th>player 2</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td id="one"></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td id="two"></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td id="dot"></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td id="four"></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td id="six"></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td id=></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td id="out"></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td id="wide"></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td id="no"></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td id="runOut"></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-            </tr>
-        </tbody>
-    </table>
 
     <script>
         var wrapper = document.querySelector('.wrapper');
@@ -177,64 +136,58 @@
             }
         }
 
-        var player1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-        var player2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+        var numberTable = document.getElementById('numberTable');
 
+        function addToTable(action) {
+            var newRow = document.createElement('tr');
 
-        function one(){
-            document.getElementById('one').innerHTML = '1';
-            player1[0] = 1;
-            
+            var actionCell = document.createElement('td');
+            actionCell.textContent = action;
+            newRow.appendChild(actionCell);
+
+            var valueCell = document.createElement('td');
+            newRow.appendChild(valueCell);
+
+            numberTable.querySelector('tbody').appendChild(newRow);
         }
 
-        function two(){
-            document.getElementById('two').innerHTML = '2';
-            player1[1] = 2;
-            
+        function one() {
+            addToTable(1);
         }
 
-        function dot(){
-            document.getElementById('dot').innerHTML = 'dot ball';
-            player1[2] = 0;
-            
+        function two() {
+            addToTable(2);
         }
 
-        function four(){
-            document.getElementById('four').innerHTML = '4';
-            player1[3] = 4;
-            
+        function dot() {
+            addToTable(0);
         }
 
-        function six(){
-            document.getElementById('six').innerHTML = '6';
-            player1[4] = 6;
-            
+        function four() {
+            addToTable(4);
         }
 
-        function out(){
-            document.getElementById('out').innerHTML = 'wicket';
-            player1[5] = 0;
-            
+        function six() {
+            addToTable(6);
         }
 
-        function wide(){
-            document.getElementById('wide').innerHTML = 'wide';
-            player1[6] = 1;
-            
+        function out() {
+            addToTable('Wicket');
         }
 
-        function no(){
-            document.getElementById('no').innerHTML = 'no ball';
-            player1[7] = 1;
-            
+        function no() {
+            addToTable('n.b.-1');
         }
 
-        function runOut(){
-            document.getElementById('runOut').innerHTML = 'wicket';
-            player1[8] = 0;
-            
+        function wide() {
+            addToTable('w-1');
         }
 
+        function runOut() {
+            addToTable('Wicket');
+        }
     </script>
 </body>
+
 </html>
+
